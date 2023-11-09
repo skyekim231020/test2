@@ -1,0 +1,366 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+* {margin:0; padding:0; box-sizing: border-box; }
+li{ list-style:none; }
+a{ text-decoration: none; color: #333; display: block;
+    font-family: 'Noto Sans KR', sans-serif; }
+
+/* a태그에 마우스 오버하면 글자색 회색으로 변경 */
+a:hover {
+    color: #ccc;
+}
+
+img { width:100% }
+body { font-family: 'Noto Sans KR', sans-serif; }
+/* 헤더 */
+header {
+    width: 1200px;
+    height: 140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* 가로 간격 일정하게 */
+    align-items: center;             /* 세로 가운데 정렬 */
+    /* position:fixed로 헤더 고정 후 위치 정확히 조정하는 공식 */
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform:translateX(-50%);
+    /* position:fixed 부터시작해서 위의 명령을 하나도 빠짐없이 모두 사용해줘야한다 */
+    background-color: white;
+    transition:height 0.5s;
+
+    /* header가 section보다 앞으로 나오도록 순서 변경 */
+    z-index: 10;
+    
+}
+
+
+
+/* 헤더에 active 클래스 추가하기 */
+header.active {
+    height: 60px;
+}
+
+/* 로고 */
+header .logo {
+    width: 140px;
+}
+
+/* 네비게이션(GNB:Global Navigation Bar) */
+header nav {
+    width: 500px;
+    height: 30px;
+}
+
+/* 직속 자식 선택자 : > */
+header nav > ul {
+    /* 자식 객체 li를 가로(row:행기준)로 나열 */
+    display: flex;
+    /* 균등 정렬 */
+    justify-content: space-between;
+}
+
+/* 서브메뉴(.sub)의 위치 설정할 떄 기준은 부모객체 li가 됨 */
+header nav > ul > li {
+    position: relative;
+}
+
+/* ★주메뉴의 글자 크기 작게 (주메뉴만 글자크기 변경) - 직속 자식 선택자 */
+header nav > ul > li > a {
+    font-size: 15px;
+    /* 주메뉴와 서브메뉴의 거리 조절(간격) padding사용(margin사용x) */
+    padding-bottom: 20px;
+    /* margin-bottom: 20px; */
+}
+
+/* 서브메뉴 - 하위 선택자 */
+header nav .sub {
+    background-color: #444;
+    padding:20px 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    position: absolute;
+    left: 50%;
+    transform:translateX(-50%);
+}
+
+header nav .sub li a {
+    font-size: 13px;
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+}
+
+/* 주메뉴에 마우스 오버했을 때 서브메뉴 나타남 */
+header nav > ul > li:hover .sub {
+    opacity: 1;
+    visibility: visible; 보임
+    /*
+    안보이는 것은 세가지 종류가 있고 셋의 차이가 존재
+    1. display:none; -> 그자리에 없다가 나타나는 것이다 그래서 트랜지션적용이 안됨
+    2. opacity:0; -> 애초에 그자리에 있었으니 서서히 나타나는 것이 가능
+    3. visibility: hidden -> display:none;과 같은 텔레포트 개념
+                             display:none과 다른 점은 레이아웃 변화없음
+
+    보이는 방법
+    1. display:block;
+    2. opacity:1;
+    3. visibility: visible; (display:none)
+    */
+}
+
+/* 서브메뉴에 마우스 오버했을 때 서브메뉴 글자색 변경 */
+header nav .sub li a:hover {
+    color: #ccc;
+}
+
+/* header안의 자식 객체 .top_menu를 가리킴, 띄어쓰기(하위선택자) */
+header .top_menu {
+    width: 280px;
+}
+
+header .top_menu ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .top_menu ul li a {
+    font-size: 13px;
+    letter-spacing: -1px; /* 자간 */
+    position: relative;
+}
+
+/* 장바구니 위에 숫자 0 넣기 */
+header .top_menu ul li:last-child a:after {
+    content: "0";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 10px;
+    color: #fff;
+}
+
+/* header .top_menu ul li .cart:after {
+
+} */
+
+
+/* 본문 */
+section {
+    width: 1200px;
+    /* 브라우저의 가운데로 정렬 */
+    margin: 0 auto;
+    margin-top: 140px;
+}
+
+section .banner {
+    width: 100%; height: 1500px;
+    /* 자식객체들(div.box)을 열기준으로 정렬 */
+    display: flex;
+    /* 열기준, 줄바꿈 허용 */
+    flex-flow: column wrap;
+    /* justify-content: space-between; 행기준(row) */
+    align-content: space-between;
+    /* background-color: pink; */
+}
+section .banner .box {
+    width: 384px;
+    padding: 20px;
+    background-color: #eee;
+    margin-top: 40px;
+}
+
+section .banner .box h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #444;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+section .banner .box p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* footer */
+
+footer {
+    background-color: #eee;
+    width: 100%;
+    padding: 40px 0;
+    margin-top: 80px;
+}
+
+footer .footer_wrap {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: nowrap;
+
+}
+
+footer .footer_wrap .about ul li:nth-child(3) a {
+    font-weight: bold;
+}
+
+footer .footer_wrap .about ul li a {
+    font-size: 11px;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+/* 푸터의 about영역의 메뉴에 마우스 오버하면 밑줄 나옴 */
+footer .footer_wrap .about ul li a:hover {
+    text-decoration: underline;
+    color: #333;
+}
+
+footer .custom .bank {
+    padding-top: 30px;
+}
+
+footer .footer_wrap h3 {
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 30px;
+}
+
+footer .footer_wrap b {
+    font-weight: normal;
+    line-height: 30px;
+}
+
+footer .footer_wrap p {
+    font-size: 11px;
+    line-height: 20px;
+}
+
+footer .footer_wrap address {
+    font-style: normal;
+    font-size: 11px;
+    line-height: 20px;
+    margin-bottom: 24px;
+}
+
+/* 탑버튼 */
+.top {
+    width: 50px; height: 50px;
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+}
+
+
+
+/* 서브페이지 */
+
+section .i_love_you {
+    width: 1200px;
+    margin:0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 100px;
+    border: 1px solid grey;
+}
+
+section .i_love_you .love_left img {
+    width: 80%;    
+}
+
+    
+section .i_love_you p {
+    font-size: 35px;
+    padding-top: 50px;
+    color: grey;
+
+}
+
+section .i_love_you .love_right {
+    /* width: 90%;
+    padding-top: 400px;
+    padding-left: 50px; */
+
+        /* 이미지를 love_right 영역의 아래쪽에 배치 */
+        display: flex;
+        align-items: fixed-end;
+    
+}
+
+
+
+/* 이미지 나열 */
+
+section h2 {
+    text-align: center;
+    padding-top: 20px;
+}
+
+section .sub_tabs {
+    padding: 30px 300px;
+    padding-bottom: 50px;
+
+}
+
+section .sub_tabs ul {
+    display: flex;
+    justify-content: space-around;
+    /* position: relative; */
+}
+
+section .sub_tabs ul li:after {
+    content: "";
+    width: 2px; height: 5px;
+    color: #333;
+    position: absolute;
+}
+
+section .gift_box { 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-right: 30px;
+
+    border: 1px solid red;
+
+}
+
+section .gift_box .image {
+    width: 80%;
+    ju
+}
+
+section .gift_box img {
+    width: 100%;
+}
+
+
+section .gift1 {
+    border: 1px solid black;
+}
+
+i {
+    border: 1px solid blue;
+}
+
+.gift4 i:after {
+    content: "품절";
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    
+
+}
+
+
+
